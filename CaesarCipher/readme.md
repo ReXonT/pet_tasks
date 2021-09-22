@@ -1,2 +1,3 @@
-#Caesar Cipher Helper
-CodeWars - 5 kyu
+# Caesar Cipher Helper
+
+CodeWars - 5
