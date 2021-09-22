@@ -6,10 +6,19 @@ use ReflectionClass;
 
 class CustomPrinter
 {
-    public static function print_r($value, $dimension = 0)
+    public static function print_r($value, $pre = false)
+    {
+        if ($pre) echo '<pre>';
+
+        self::real_print($value);
+
+        if ($pre) echo '</pre>';
+    }
+
+    private static function real_print($value, $dimension = 0)
     {
         if ($dimension > 0) {
-            $dimension++; // for spaces like in print_r
+            $dimension++; // for spaces like in real print_r
         }
 
         $next_dimension = $dimension + 1;
@@ -21,7 +30,7 @@ class CustomPrinter
                 self::print_spaces($next_dimension);
 
                 self::print_array_key($key);
-                self::print_r($v, $next_dimension);
+                self::real_print($v, $next_dimension);
             }
 
             self::print_end_definition($dimension);
@@ -38,7 +47,7 @@ class CustomPrinter
                 $prop_v = self::get_object_property_value($prop, $value);
 
                 self::print_object_key($prop, $class);
-                self::print_r($prop_v, $next_dimension);
+                self::real_print($prop_v, $next_dimension);
             }
 
             self::print_end_definition($dimension);
@@ -71,10 +80,10 @@ class CustomPrinter
         return '';
     }
 
-    private static function print_start_definition($type_name, $dim)
+    private static function print_start_definition($type_name, $dimension)
     {
         echo $type_name . PHP_EOL;
-        self::print_spaces($dim);
+        self::print_spaces($dimension);
         echo '(' . PHP_EOL;
     }
 
@@ -94,9 +103,9 @@ class CustomPrinter
         echo '[' . $prop->getName() . ':' . self::define_type($prop, $class) . '] => ';
     }
 
-    private static function print_spaces($dim = 0)
+    private static function print_spaces($dimension = 0)
     {
-        for ($i = 0; $i < $dim; $i++) {
+        for ($i = 0; $i < $dimension; $i++) {
             echo '    ';
         }
     }

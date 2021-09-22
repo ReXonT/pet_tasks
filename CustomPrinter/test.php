@@ -1,5 +1,6 @@
 <?php
 
+
 class Test
 {
     private $a = 1;
@@ -25,6 +26,4 @@ $arr = ['1', 2, null, new Test(), 'arr' => [
 ]
 ];
 
-echo '<pre>';
-\Merexo\CustomPrinter::print_r($arr);
-echo '</pre>';
+\Merexo\CustomPrinter::print_r($arr, true);
