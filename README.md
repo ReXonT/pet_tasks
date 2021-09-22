@@ -1,2 +1,2 @@
 # pet_tasks
-Repo for different pet projects or tasks/katas from interviews
+Repo for different handwriten solutions from interviews/codewars/projects.
